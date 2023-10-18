@@ -1,0 +1,52 @@
+import math
+def decimelToBinary(num):
+    digit = 0
+    pow = 1
+    binaryNum = 0
+    while (num > 0):
+        digit = num%2
+        num /= 2
+        num = math.floor(num)
+        digit *= pow
+        binaryNum += digit
+        pow *= 10
+    return (str(binaryNum))
+
+def eightDigit(bitsNum, num):
+    zeroNumber = bitsNum - len(num)
+    for i in range(zeroNumber):
+        num = '0' + num
+    return num
+    
+
+def mashlimLeShtaim(swapBinary):
+    swapBinary = ''.join('1' if x == '0' else '0' for x in swapBinary)
+    index = len(swapBinary)-1   
+    for i in range(len(swapBinary)-1):
+        index -= i
+        if (swapBinary[index] == '1'):
+            swapBinary = swapBinary[:index] + '0' + swapBinary[index+1:]
+
+        else:
+            swapBinary = swapBinary[:index] + '1' + swapBinary[index+1:]
+            break
+    return swapBinary
+
+def main():
+    num = int(input("Enter Number"))
+    bitsNum = int(input("Enter Number Of Bits"))
+    bNum = decimelToBinary(num)
+    print(bNum)
+    bNum = eightDigit(bitsNum, bNum)
+    print(bNum)
+    bNum = mashlimLeShtaim(bNum)
+    print(bNum)
+ 
+
+
+
+
+if __name__ == "__main__":
+    main()
+
+
